@@ -6,14 +6,7 @@
 
         public bool CanBeCancelledBy(User user)
         {
-            // Changed to reflect lecture 7
-            if (user.IsAdmin)
-                return true;
-
-            if (MadeBy == user)
-                return true;
-
-            return false;
+            return (user.IsAdmin || MadeBy == user);
         }
         
     }
