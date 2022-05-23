@@ -1,13 +1,13 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using System;
 using TestNinja.Fundamentals;
 
 namespace TestNinja.UnitTests
 {
-    [TestClass]
+    [TestFixture]
     public class ReservationTests
     {
-        [TestMethod]
+        [Test]
         public void CanBeCancelledBy_AdminUserCancelling_ReturnsTrue()
         {
             // Arrange
@@ -18,10 +18,12 @@ namespace TestNinja.UnitTests
             var result = reservation.CanBeCancelledBy(user);
 
             // Assert
-            Assert.IsTrue(result);
+            Assert.IsTrue(result);          // Exactly the same for NUnit & MSTest
+            Assert.That(result, Is.True);   // Only for NUnit
+            Assert.That(result == true);    // Only for NUnit
         }
 
-        [TestMethod]
+        [Test]
         public void CanBeCancelledBy_SameUserCancelling_ReturnsTrue()
         {
             // Arrange
@@ -32,10 +34,10 @@ namespace TestNinja.UnitTests
             var result = reservation.CanBeCancelledBy(user);
 
             // Assert
-            Assert.IsTrue(result);
+            Assert.That(result, Is.True);
         }
 
-        [TestMethod]
+        [Test]
         public void CanBeCancelledBy_AnotherUserCancelling_ReturnsFalse()
         {
             // Arrange
@@ -46,7 +48,7 @@ namespace TestNinja.UnitTests
             var result = reservation.CanBeCancelledBy(user);
 
             // Assert
-            Assert.IsFalse(result);
+            Assert.That(result, Is.False);
         }
     }
 }
